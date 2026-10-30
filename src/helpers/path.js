@@ -4,7 +4,7 @@ export const PathServer = () =>{
     let rutaTest = "ControlAsistenciaTest"
 
     
-    let apiTest = "https://localhost:7195/api/";
+    let apiTest = "https://apicontrolasistenciaceiaf.runasp.net/api/";
    
 
     
