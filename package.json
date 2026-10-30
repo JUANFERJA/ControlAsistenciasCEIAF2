@@ -1,7 +1,6 @@
 {
-  "name": "iaprocesos",
-  "version": "0.1.0",
-  "homepage": "http://10.40.0.20/ControlAsistenciaTest",
+  "name": "Control Asistencias",
+  "version": "0.1.0",  
   "private": true,
   "dependencies": {
     "@azure/msal-browser": "^3.27.0",
