@@ -81,7 +81,7 @@ export const RefreshProvider = ({ children }) => {
 
 
   return (
-    <RefreshContext.Provider value={connection, setConnection}>
+    <RefreshContext.Provider value={{connection, setConnection}}>
       {children}
     </RefreshContext.Provider>
   )

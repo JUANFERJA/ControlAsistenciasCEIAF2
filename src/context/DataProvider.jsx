@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { DataContext } from './DataContext'
 
 export const DataProvider = ({children}) => {
-
+    var user = JSON.parse(localStorage.getItem("usuario"));
     const [docentes, setDocentes] = useState([]);
     const [vacaciones, setVacaciones] = useState([]);
     const [novedades, setNovedades] = useState([]);
@@ -12,7 +12,7 @@ export const DataProvider = ({children}) => {
     const [horarios, setHorarios] = useState([]);
     const [cursos, setCursos] = useState([]);
     const [roles, setRoles] = useState([]);
-    const [usuario, setUsuario] = useState({nombre: '', password: '', apellido:'', idRol:1})
+    const [usuario, setUsuario] = useState( user || {nombre: '', password: '', apellido:'', idRol:1})
 
     const mesDefault = new Date().getMonth() + 1;
 

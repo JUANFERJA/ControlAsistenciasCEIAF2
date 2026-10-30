@@ -9,14 +9,15 @@ const routeApi = PathServer().routeApi;
 export const generalFunctions = () => {
 
     const autentica = (setAutenticated, setUsuario, url, datos) => {
-        console.log("res", datos)
+       
         let options = { headers: { "content-type": "application/json" }, body: datos };
         api.post(`${routeApi}${url}`, options).then((res) => {
 
             if (res.isSuccess) {                
                 setAutenticated(res.isSuccess);
                 setUsuario(res.data);
-                localStorage.setItem("isAutenticated", true)
+                localStorage.setItem("isAutenticated", true);
+                localStorage.setItem("usuario", JSON.stringify(res.data));
             } else {
                 Swal.fire({
                     icon: 'error',

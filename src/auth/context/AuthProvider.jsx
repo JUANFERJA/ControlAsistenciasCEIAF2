@@ -3,7 +3,8 @@ import { AuthContext } from './AuthContext'
 
 export const AuthProvider = ({children}) => {
 
-    const [isAutenticated, setisAutenticated] = useState(false);
+    var autenticated = localStorage.getItem("isAutenticated")
+    const [isAutenticated, setisAutenticated] = useState(autenticated);
     const [usuario, setUsuario] = useState()
   return (
     <AuthContext.Provider value={{isAutenticated, setisAutenticated,

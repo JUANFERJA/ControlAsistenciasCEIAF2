@@ -10,7 +10,7 @@ import { Sidebar } from '../components/Sidebar';
 
 export const MasterPage = () => {
     const { generarContenido } = generalFunctions();
-    const { setDocentes, setRegistroAsistencias, setHorarios, setCursos, setRoles, setVacaciones, setNovedades, setFeriados } = useContext(DataContext);
+    const { setDocentes, setRegistroAsistencias, setHorarios, setCursos, setRoles,roles, setVacaciones, setNovedades, setFeriados } = useContext(DataContext);
     const { isAutenticated } = useContext(AuthContext);
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
    
@@ -33,10 +33,12 @@ export const MasterPage = () => {
         generarContenido(setNovedades, urlNovedades);
         generarContenido(setFeriados, urlFeriados);
     }, [])
+    
+    
     return (
         <>
             {
-                isAutenticated ? (
+                (isAutenticated) ? (
                     <div className="attendance-app">
                         <NavBar onToggleSidebar={() => setIsSidebarOpen((prev) => !prev)} />
                         <div className="layout">

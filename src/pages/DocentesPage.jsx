@@ -10,9 +10,9 @@ import { reporteDocenteFunctions } from '../helpers/reporteDocenteFunctions';
 const DocentesPage = () => {
     const { exportarResumen, exportHtmlTableFromRows } = reporteDocenteFunctions();
     const { meses, headers } = dateData();
-    const { docentes, registroAsistencias, horarios, cursos, mesDefault, vacaciones = [], feriados = [], novedades = [] } = useContext(DataContext);
+    const { docentes, registroAsistencias,  mesDefault} = useContext(DataContext);
     const mesNombre = meses.find((m) => Number(m.id) === Number(mesDefault))?.descripcion || 'mes';
-    const [mes, setMes] = useState({ idMes: mesDefault ?? 1, descripcion:mesNombre });   
+    const [mes, setMes] = useState({ idMes: mesDefault, descripcion:mesNombre });   
     const [showModal, setShowModal] = useState(false);
     const [docenteInfo, setDocenteInfo] = useState();
 
@@ -26,7 +26,7 @@ const DocentesPage = () => {
         setShowModal(true)
     }
 
-    const exportarNovedades = () => {
+    const exportarNovedades = (mesDescripcion) => {
         
 
         
@@ -89,8 +89,8 @@ const DocentesPage = () => {
         });
 
         exportHtmlTableFromRows(
-            `novedades_${mesNombre.toLowerCase()}.xls`,
-            `Novedades de docentes - ${mesNombre}`,
+            `novedades_${mesDescripcion.toLowerCase()}.xls`,
+            `Novedades de docentes - ${mesDescripcion}`,
             headers,
             rows
         );
@@ -110,7 +110,7 @@ const DocentesPage = () => {
                         <button className="export-btn secondary" onClick={() => exportarResumen(mes.descripcion)}>
                             Descargar resumen
                         </button>
-                        <button className="export-btn" onClick={exportarNovedades}>
+                        <button className="export-btn" onClick={exportarNovedades(mes.descripcion)}>
                             Descargar novedades
                         </button>
                     </div>

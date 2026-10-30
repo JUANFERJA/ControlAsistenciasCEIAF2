@@ -3,9 +3,11 @@ import { DataContext } from '../context/DataContext'
 
 export const NavBar = ({ onToggleSidebar }) => {
   const {usuario, roles} = useContext(DataContext);
+  console.log("mi usuario", usuario, roles)
   const {nombre, apellido, idRol} = usuario;
   let rol = roles.find(r => r.id == idRol);
-  console.log("mi usuario", usuario, roles)
+  
+  
   return (
      <nav className="topbar">
         <div className="brand-wrap">
@@ -36,7 +38,7 @@ export const NavBar = ({ onToggleSidebar }) => {
               <div className="avatar">{`${nombre.charAt(0)}${apellido.charAt(0)}`}</div>
               <div className="profile-info">
                 <strong>{`${nombre} ${apellido}`}</strong>
-                <span>{`${rol.nombre}`}</span>
+                {roles.length > 0 && <span>{`${rol.nombre}`}</span>}
               </div>
             </div>
           </div>
