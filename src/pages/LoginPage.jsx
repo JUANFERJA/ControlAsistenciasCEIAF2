@@ -5,7 +5,9 @@ import { AuthContext } from '../auth/context/AuthContext';
 import { PathServer } from '../helpers';
 import { DataContext } from '../context/DataContext';
 import imagenes from '../assets/imagenes';
+import { useNavigate } from 'react-router-dom';
 let routeApi = PathServer().routeApi;
+
 
 export const LoginPage = () => {
 
@@ -13,12 +15,12 @@ export const LoginPage = () => {
   const {isAutenticated, setisAutenticated} = useContext(AuthContext);
   const {usuario, setUsuario} = useContext(DataContext);
   const [login, setlogin] = useState({isSuccess:false, data:[]});
-  ;
+  let navigate = useNavigate();
 
   const handleLogin = (e) =>{
       let url =`Usuario/autentica-usuario`;      
-      autentica(setisAutenticated, setUsuario, url, usuario);
-     
+      autentica(setisAutenticated, setUsuario, url, usuario);     
+      navigate('/dashboard', { replace: true });
   }
 
   
