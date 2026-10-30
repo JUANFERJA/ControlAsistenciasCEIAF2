@@ -13,8 +13,7 @@ export const generalFunctions = () => {
         let options = { headers: { "content-type": "application/json" }, body: datos };
         api.post(`${routeApi}${url}`, options).then((res) => {
 
-            if (res.isSuccess) {
-                console.log(res)
+            if (res.isSuccess) {                
                 setAutenticated(res.isSuccess);
                 setUsuario(res.data);
                 localStorage.setItem("isAutenticated", true)

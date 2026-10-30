@@ -21,6 +21,7 @@ export const LoginPage = () => {
       let url =`Usuario/autentica-usuario`;      
       autentica(setisAutenticated, setUsuario, url, usuario);     
       navigate('/dashboard', { replace: true });
+      
   }
 
   

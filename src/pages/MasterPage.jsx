@@ -34,11 +34,12 @@ export const MasterPage = () => {
         generarContenido(setNovedades, urlNovedades);
         generarContenido(setFeriados, urlFeriados);
     }, [])
+    var isAuthenticatedLocalStorage = localStorage.getItem('isAuthenticated');
 
     return (
         <>
             {
-                isAutenticated || autenticated == true ? (
+                isAutenticated || autenticated == true || isAuthenticatedLocalStorage == true ? (
                     <div className="attendance-app">
                         <NavBar onToggleSidebar={() => setIsSidebarOpen((prev) => !prev)} />
                         <div className="layout">
