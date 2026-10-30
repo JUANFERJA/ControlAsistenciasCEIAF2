@@ -14,7 +14,6 @@ export const MasterPage = () => {
     const { isAutenticated } = useContext(AuthContext);
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
    
-    let autenticated = localStorage.getItem("isAutenticated");
     useEffect(() => {
 
         let urlDocentes = `Docente/obtener-docentes`;
@@ -34,12 +33,10 @@ export const MasterPage = () => {
         generarContenido(setNovedades, urlNovedades);
         generarContenido(setFeriados, urlFeriados);
     }, [])
-    var isAuthenticatedLocalStorage = localStorage.getItem('isAuthenticated');
-
     return (
         <>
             {
-                isAutenticated || autenticated == true || isAuthenticatedLocalStorage == true ? (
+                isAutenticated ? (
                     <div className="attendance-app">
                         <NavBar onToggleSidebar={() => setIsSidebarOpen((prev) => !prev)} />
                         <div className="layout">
