@@ -1,0 +1,399 @@
+    *{ box-sizing: border-box; }
+
+        body {
+          margin: 0;
+          font-family: 'Segoe UI', sans-serif;
+          background: #f4f7ff;
+        }
+
+        .horarios-page {
+          min-height: 100vh;
+          background: linear-gradient(180deg, #f4f8ff 0%, #eef4ff 100%);
+          padding: 32px;
+        }
+
+        .horarios-container {
+          max-width: 1200px;
+          margin: 0 auto;
+          background: #ffffff;
+          border: 1px solid #e2e8f0;
+          border-radius: 22px;
+          box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+          overflow: hidden;
+        }
+
+        .horarios-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 28px 28px 20px;
+          border-bottom: 1px solid #edf2f7;
+          background: linear-gradient(90deg, #eff6ff 0%, #ffffff 100%);
+        }
+
+        .horarios-header h1 {
+          margin: 0;
+          font-size: 2rem;
+          color: #0f172a;
+        }
+
+        .horarios-header span {
+          background: #dbeafe;
+          color: #1d4ed8;
+          padding: 8px 12px;
+          border-radius: 999px;
+          font-size: 0.75rem;
+          font-weight: 800;
+        }
+
+        .table-wrap {
+          overflow-x: auto;
+          padding: 20px;
+        }
+
+        table {
+          width: 100%;
+          min-width: 900px;
+          border-collapse: collapse;
+        }
+
+        thead th {
+          background: #f8fafc;
+          color: #334155;
+          font-size: 0.8rem;
+          font-weight: 800;
+          text-transform: uppercase;
+          letter-spacing: 0.06em;
+          padding: 16px 12px;
+          border: 1px solid #e2e8f0;
+          text-align: center;
+        }
+
+        tbody td {
+          padding: 14px 12px;
+          border: 1px solid #e2e8f0;
+          text-align: center;
+          color: #334155;
+          background: #fff;
+          font-size: 0.94rem;
+        }
+
+        tbody tr:nth-child(even) td {
+          background: #f8fbff;
+        }
+
+        .curso-cell {
+          font-weight: 800;
+          color: #0f172a;
+          text-align: left !important;
+          background: #edf6ff !important;
+        }
+
+        .badge {
+          display: inline-block;
+          background: #dbeafe;
+          color: #1d4ed8;
+          padding: 7px 10px;
+          border-radius: 999px;
+          font-size: 0.74rem;
+          font-weight: 700;
+        }
+
+        .badge.muted {
+          background: #e2e8f0;
+          color: #64748b;
+        }
+
+        @media (max-width: 700px) {
+          .horarios-page {
+            padding: 16px;
+          }
+
+          .horarios-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
+          }
+        }
+
+        *{ box-sizing: border-box; }
+
+        body {
+          margin: 0;
+          font-family: 'Segoe UI', sans-serif;
+          background: #f4f7ff;
+        }
+
+        .horarios-page {
+          min-height: 100vh;
+          width: 100%;
+          background: linear-gradient(180deg, #f4f8ff 0%, #eef4ff 100%);
+          padding: 32px;
+        }
+
+        .horarios-container {
+          max-width: 1200px;
+          margin: 0 auto;
+          background: #ffffff;
+          border: 1px solid #e2e8f0;
+          border-radius: 22px;
+          box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+          overflow: hidden;
+        }
+
+        .horarios-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 28px 28px 20px;
+          border-bottom: 1px solid #edf2f7;
+          background: linear-gradient(90deg, #eff6ff 0%, #ffffff 100%);
+        }
+
+        .horarios-header h1 {
+          margin: 0;
+          font-size: 2rem;
+          color: #0f172a;
+        }
+
+        .save-btn {
+          border: none;
+          background: linear-gradient(135deg, #2563eb, #1d4ed8);
+          color: white;
+          border-radius: 12px;
+          padding: 12px 18px;
+          font-weight: 800;
+          cursor: pointer;
+          box-shadow: 0 16px 28px rgba(37, 99, 235, 0.2);
+        }
+
+        .table-wrap {
+          overflow-x: auto;
+          padding: 20px;
+        }
+
+        table {
+          width: 100%;
+          min-width: 900px;
+          border-collapse: collapse;
+        }
+
+        thead th {
+          background: #f8fafc;
+          color: #334155;
+          font-size: 0.8rem;
+          font-weight: 800;
+          text-transform: uppercase;
+          letter-spacing: 0.06em;
+          padding: 16px 12px;
+          border: 1px solid #e2e8f0;
+          text-align: center;
+        }
+
+        tbody td {
+          padding: 14px 12px;
+          border: 1px solid #e2e8f0;
+          text-align: center;
+          color: #334155;
+          background: #fff;
+          font-size: 0.94rem;
+        }
+
+        tbody tr:nth-child(even) td {
+          background: #f8fbff;
+        }
+
+        .curso-cell {
+          font-weight: 800;
+          color: #0f172a;
+          text-align: left !important;
+          background: #edf6ff !important;
+        }
+
+        .curso-info {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 4px;
+        }
+
+        .curso-nombre {
+          font-weight: 800;
+          color: #0f172a;
+        }
+
+        .curso-docente {
+          font-size: 0.72rem;
+          font-weight: 600;
+          color: #475569;
+          background: #dbeafe;
+          padding: 3px 8px;
+          border-radius: 999px;
+          line-height: 1.4;
+        }
+
+        .badge {
+          display: inline-block;
+          background: #dbeafe;
+          color: #1d4ed8;
+          padding: 7px 10px;
+          border-radius: 999px;
+          font-size: 0.74rem;
+          font-weight: 700;
+        }
+
+        .badge.muted {
+          background: #e2e8f0;
+          color: #64748b;
+        }
+
+        .modal-overlay {
+          position: fixed;
+          inset: 0;
+          background: rgba(15, 23, 42, 0.4);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 20px;
+          z-index: 100;
+        }
+
+        .modal-box {
+          width: min(560px, 100%);
+          background: white;
+          border-radius: 18px;
+          border: 1px solid #e2e8f0;
+          box-shadow: 0 30px 80px rgba(15, 23, 42, 0.18);
+          overflow: hidden;
+        }
+
+        .modal-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 18px 22px;
+          border-bottom: 1px solid #edf2f7;
+          background: linear-gradient(90deg, #eff6ff 0%, #ffffff 100%);
+        }
+
+        .modal-header h3 {
+          margin: 0;
+          color: #0f172a;
+          font-size: 1.2rem;
+        }
+
+        .close-btn {
+          border: none;
+          background: #eef2ff;
+          color: #1d4ed8;
+          width: 34px;
+          height: 34px;
+          border-radius: 50%;
+          font-size: 1.3rem;
+          cursor: pointer;
+        }
+
+        .modal-body {
+          padding: 22px;
+        }
+
+        .form-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 16px;
+        }
+
+        .field {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          margin-bottom: 16px;
+        }
+
+        .field.full {
+          grid-column: 1 / -1;
+        }
+
+        .field label {
+          font-size: 0.82rem;
+          font-weight: 700;
+          color: #334155;
+        }
+
+        .field input,
+        .field select {
+          width: 100%;
+          border: 1px solid #dbe4f0;
+          border-radius: 12px;
+          background: #f8fbff;
+          padding: 11px 12px;
+          font-size: 0.95rem;
+          color: #0f172a;
+        }
+
+        .modal-actions {
+          display: flex;
+          justify-content: flex-end;
+          gap: 12px;
+          margin-top: 12px;
+        }
+
+        .secondary-btn,
+        .primary-btn {
+          border: none;
+          border-radius: 10px;
+          padding: 11px 15px;
+          font-weight: 700;
+          cursor: pointer;
+        }
+
+        .secondary-btn {
+          background: #e2e8f0;
+          color: #334155;
+        }
+
+        .primary-btn {
+          background: linear-gradient(135deg, #2563eb, #1d4ed8);
+          color: white;
+        }
+
+        @media (max-width: 700px) {
+          .horarios-page {
+            padding: 16px;
+          }
+
+          .horarios-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
+          }
+
+          .modal-overlay {
+            padding: 16px;
+          }
+
+          .modal-box {
+            width: min(560px, 100%);
+            max-height: 90vh;
+            overflow-y: auto;
+          }
+
+          .modal-header {
+            align-items: flex-start;
+            gap: 12px;
+            flex-direction: column;
+          }
+
+          .form-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .modal-actions {
+            flex-direction: column-reverse;
+          }
+
+          .secondary-btn,
+          .primary-btn {
+            width: 100%;
+          }
+        }

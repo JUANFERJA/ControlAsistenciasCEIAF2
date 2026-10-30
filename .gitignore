@@ -1,0 +1,19 @@
+node_modules
+# Visual Studio
+.vs/
+.vscode/
+
+# Dependencias
+node_modules/
+
+# Archivos compilados
+build/
+
+# Variables de entorno
+.env
+.env.local
+.env.development.local
+.env.production.local
+
+# Logs
+npm-debug.log*

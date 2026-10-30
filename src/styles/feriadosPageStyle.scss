@@ -1,0 +1,232 @@
+.feriados-page {
+  width: 100%;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.feriados-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.feriados-eyebrow {
+  margin: 0 0 8px;
+  color: #64748b;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.feriados-title {
+  margin: 0;
+  font-size: 2rem;
+  color: #0f172a;
+}
+
+.feriados-primary-btn {
+  border: none;
+  background: #2563eb;
+  color: #fff;
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.feriados-secondary-btn {
+  border: 1px solid #cbd5e1;
+  background: #fff;
+  color: #334155;
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.feriados-filters-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.feriados-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.feriados-label,
+.feriados-label-modal {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: #334155;
+}
+
+.feriados-label-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.9rem;
+}
+
+.feriados-select,
+.feriados-input,
+.feriados-textarea {
+  width: 100%;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  background: #fff;
+  color: #0f172a;
+  box-sizing: border-box;
+}
+
+.feriados-textarea {
+  resize: vertical;
+  min-height: 90px;
+  font-family: inherit;
+}
+
+.feriados-table-card {
+  background: #fff;
+  border-radius: 16px;
+  overflow-x: auto;
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
+}
+
+.feriados-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.feriados-table th {
+  text-align: left;
+  padding: 14px 16px;
+  font-size: 0.8rem;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: #f8fafc;
+}
+
+.feriados-table td {
+  padding: 14px 16px;
+  border-top: 1px solid #e2e8f0;
+  color: #0f172a;
+}
+
+.feriados-tr {
+  background: #fff;
+}
+
+.feriados-empty-state {
+  padding: 24px 16px;
+  text-align: center;
+  color: #64748b;
+}
+
+.feriados-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.5);
+  display: grid;
+  place-items: center;
+  z-index: 1000;
+}
+
+.feriados-modal {
+  width: min(640px, 92vw);
+  background: #fff;
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.18);
+}
+
+.feriados-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.feriados-modal-title {
+  margin: 0;
+  color: #0f172a;
+  font-size: 1.5rem;
+}
+
+.feriados-close-btn {
+  border: none;
+  background: transparent;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #64748b;
+  line-height: 1;
+}
+
+.feriados-form {
+  display: grid;
+  gap: 18px;
+}
+
+.feriados-form-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.feriados-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+@media (max-width: 700px) {
+  .feriados-page {
+    padding: 16px;
+  }
+
+  .feriados-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .feriados-overlay {
+    padding: 16px;
+  }
+
+  .feriados-modal {
+    width: min(640px, 100%);
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 18px;
+  }
+
+  .feriados-modal-header {
+    align-items: flex-start;
+    gap: 12px;
+    flex-direction: column;
+  }
+
+  .feriados-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .feriados-actions {
+    flex-direction: column-reverse;
+  }
+
+  .feriados-primary-btn,
+  .feriados-secondary-btn {
+    width: 100%;
+  }
+}
