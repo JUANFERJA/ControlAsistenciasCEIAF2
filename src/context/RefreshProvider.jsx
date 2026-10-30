@@ -1,88 +1,152 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { HubConnectionBuilder } from '@microsoft/signalr';
+
+import React, { useContext, useEffect, useState } from 'react';
+import { HubConnectionBuilder, HubConnectionState, LogLevel } from '@microsoft/signalr';
+
 import { DataContext } from './DataContext';
 import { RefreshContext } from './RefreshContext';
 import { PathServer } from '../helpers';
 
-let routeApi = PathServer().routeApi;
+const { routeApi } = PathServer();
 
 export const RefreshProvider = ({ children }) => {
 
-  const{setHorarios, setRegistroAsistencias, setNovedades, setVacaciones, setFeriados, setDocentes} = useContext(DataContext); 
-  const [connection, setConnection] = useState(null);
+    const {
+        setHorarios,
+        setRegistroAsistencias,
+        setNovedades,
+        setVacaciones,
+        setFeriados,
+        setDocentes
+    } = useContext(DataContext);
 
+    const [connection, setConnection] = useState(null);
 
-  // Conexión a SignalR
-  useEffect(() => {
-    const connection = new HubConnectionBuilder()
-      .withUrl(`${routeApi}notificationHub`, {
-        withCredentials: true, // Si usas cookies o autenticación
-      })
-      .build();
+    useEffect(() => {
 
-    connection.start()
-      .then(() => {
-        setConnection(connection); // Guardar la conexión para su uso posterior
-      })
-      .catch((err) => console.log("Error al conectar", err));
+        // Crear conexión SignalR
+        const newConnection = new HubConnectionBuilder()
+            .withUrl(`${routeApi}notificationHub`, {
+                withCredentials: true
+            })
+            .withAutomaticReconnect([0, 2000, 5000, 10000, 20000])
+            .configureLogging(LogLevel.Information)
+            .build();
 
-    // Escuchar las notificaciones
-    connection.on("ReceiveNotification", (notificationMessage, objeto) => {    
+        let mounted = true;
 
-      console.log("notificacion", objeto)
-      // para recargar todos los marcos de proceso
-      if (notificationMessage.toLowerCase() === 'horarios') {      
-       
-        setHorarios(objeto)        
-        return;
-      }      
-      if (notificationMessage.toLowerCase() === 'registros') {      
-        
-        setRegistroAsistencias(objeto)        
-        return;
-      } 
-      if (notificationMessage.toLowerCase() === 'novedades') {      
-        
-        setNovedades(objeto)        
-        return;
-      } 
-      if (notificationMessage.toLowerCase() === 'vacaciones') {      
-        
-        setVacaciones(objeto)        
-        return;
-      } 
-      if (notificationMessage.toLowerCase() === 'feriados') {      
-        
-        setFeriados(objeto)        
-        return;
-      } 
-      if (notificationMessage.toLowerCase() === 'docentes') {      
-        
-        setDocentes(objeto)        
-        return;
-      }
-    });
+        // Escuchar notificaciones
+        newConnection.on("ReceiveNotification", (notificationMessage, objeto) => {
 
-    return () => {
-      if (connection) {
-        connection.stop();
-      }
+            console.log("Notificación recibida:", notificationMessage, objeto);
+
+            if (!notificationMessage) return;
+
+            switch (notificationMessage.toLowerCase()) {
+
+                case 'horarios':
+                    setHorarios(objeto);
+                    break;
+
+                case 'registros':
+                    setRegistroAsistencias(objeto);
+                    break;
+
+                case 'novedades':
+                    setNovedades(objeto);
+                    break;
+
+                case 'vacaciones':
+                    setVacaciones(objeto);
+                    break;
+
+                case 'feriados':
+                    setFeriados(objeto);
+                    break;
+
+                case 'docentes':
+                    setDocentes(objeto);
+                    break;
+
+                default:
+                    console.log("Notificación desconocida:", notificationMessage);
+            }
+        });
+
+        // Eventos de conexión
+        newConnection.onreconnecting((error) => {
+            console.log("SignalR intentando reconectar...", error);
+        });
+
+        newConnection.onreconnected((connectionId) => {
+            console.log("SignalR reconectado:", connectionId);
+        });
+
+        newConnection.onclose((error) => {
+            console.log("Conexión SignalR cerrada:", error);
+            if (mounted) {
+                setConnection(null);
+            }
+        });
+
+        // Iniciar conexión
+        const startConnection = async () => {
+
+            try {
+
+                await newConnection.start();
+
+                if (mounted) {
+                    setConnection(newConnection);
+                    console.log("SignalR conectado correctamente");
+                }
+
+            } catch (error) {
+
+                console.error("Error al conectar SignalR:", error);
+
+            }
+        };
+
+        startConnection();
+
+        // Limpiar conexión
+        return () => {
+
+            mounted = false;
+
+            newConnection.stop();
+
+            setConnection(null);
+        };
+
+    }, []);
+
+    // Enviar notificaciones
+    const sendNotification = async (message) => {
+
+        if (!connection || connection.state !== HubConnectionState.Connected) {
+            console.log("No hay conexión SignalR establecida.");
+            return;
+        }
+
+        try {
+
+            await connection.invoke("SendNotification", message);
+
+        } catch (error) {
+
+            console.error("Error al enviar notificación:", error);
+
+        }
     };
-  }, []);
 
-  // Función para enviar una notificación
-  const sendNotification = async (message) => {
-    if (connection) {
-      await connection.invoke("SendNotification", message); // Asegúrate de invocar el método del Hub correctamente
-    } else {
-      console.log("No hay conexión establecida.");
-    }
-  };
-
-
-  return (
-    <RefreshContext.Provider value={{connection, setConnection}}>
-      {children}
-    </RefreshContext.Provider>
-  )
-}
+    return (
+        <RefreshContext.Provider value={{
+            connection,
+            setConnection,
+            sendNotification
+        }}>
+            {children}
+        </RefreshContext.Provider>
+    );
+};
